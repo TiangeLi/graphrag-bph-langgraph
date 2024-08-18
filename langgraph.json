@@ -1,0 +1,11 @@
+{
+  "python_version": "3.12",
+  "dockerfile_lines": [],
+  "dependencies": [
+    "."
+  ],
+  "graphs": {
+    "main_graph": "./main_graph.py:graph"
+  },
+  "env": ".env"
+}
