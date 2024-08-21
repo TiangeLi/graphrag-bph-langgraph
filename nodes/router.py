@@ -1,8 +1,9 @@
 from langchain_core.prompts import ChatPromptTemplate
 
-from helpers.llm_response_types import BooleanResponse
 from helpers.constants import ROUTERLLM
 from helpers.template import meds_abbrevs_table, surg_abbrevs_table, other_abbrevs_table
+
+from typing import TypedDict, Annotated, ByteString
 
 
 router_template = \
@@ -29,7 +30,10 @@ router_prompt = ChatPromptTemplate.from_messages(
         ('system', router_template),
         ('human', 'Query: {question}')
     ]
-
 )
 
-router_chain = router_prompt | ROUTERLLM.with_structured_output(schema=BooleanResponse, method='json_schema', strict=True)
+
+class IsRelatedToBPH(TypedDict):
+    b: Annotated[bool, ..., 'Is the user query related to benign prostate hyperplasia (BPH)?']
+
+router_chain = router_prompt | ROUTERLLM.with_structured_output(schema=IsRelatedToBPH, method='json_schema', strict=True)

@@ -1,5 +1,3 @@
-from langchain_core.prompts import ChatPromptTemplate
-
 from typing import TypedDict, Annotated
 
 from helpers.constants import CONVLLM
@@ -31,4 +29,4 @@ class Response(TypedDict):
     scratchpad: Annotated[str, ..., scratchpad_instructions]
     final_answer: str
 
-chat_llm_w_scratchpad = CONVLLM.with_structured_output(Response, method='json_schema', strict=True)
+chat_llm_w_scratchpad = CONVLLM #.with_structured_output(Response, method='json_schema', strict=True)

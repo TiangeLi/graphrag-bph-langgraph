@@ -1,3 +1,20 @@
+# CHANGES MADE:
+
+# 1.
+#def dict_to_yaml_str(input_dict: Dict, indent: int = 0) -> str:
+#   return json.dumps(input_dict)
+#   ...
+
+# 2.
+# elif operator in {"$nin"}:
+        #    query_snippet = f"NOT n.`{field}` IN $param_{param_number}"
+        #    query_param = {f"param_{param_number}": filter_value}
+        #    return (query_snippet, query_param)
+# change: from n.field NOT IN x to NOT n.field IN x
+
+# -------------------------------------
+
+
 from __future__ import annotations
 
 import enum
@@ -329,7 +346,7 @@ def _handle_field_filter(
             query_param = {f"param_{param_number}": filter_value}
             return (query_snippet, query_param)
         elif operator in {"$nin"}:
-            query_snippet = f"n.`{field}` NOT IN $param_{param_number}"
+            query_snippet = f"NOT n.`{field}` IN $param_{param_number}"
             query_param = {f"param_{param_number}": filter_value}
             return (query_snippet, query_param)
         elif operator in {"$like"}:

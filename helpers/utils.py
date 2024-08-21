@@ -1,11 +1,5 @@
 from langchain.load import dumps, loads
 
-
-# graph reducer functions
-def graph_overwrite(_, new):
-    return new
-
-
 # data functions
 def reciprocal_rank_fusion(results: list[list], k=60):
     fused_scores = {}
